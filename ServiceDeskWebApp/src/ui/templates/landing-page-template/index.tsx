@@ -13,7 +13,7 @@ export const LandingPageTemplate = ({ children }: Props) => {
   const location = useLocation();
 
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { borderRadiusLG },
   } = theme.useToken();
 
   return (
@@ -44,7 +44,6 @@ export const LandingPageTemplate = ({ children }: Props) => {
 
         <div
           style={{
-            background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
           className={classes.contentContainer}
