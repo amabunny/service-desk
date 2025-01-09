@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDeskApi", "ServiceDeskApi\ServiceDeskApi.csproj", "{35AE934F-B63A-4746-89EC-DB64A2F729FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDeskApi", "ServiceDeskApi\ServiceDeskApi.csproj", "{0B87EFC6-6F8C-41B3-B43E-B08C52E423AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35AE934F-B63A-4746-89EC-DB64A2F729FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35AE934F-B63A-4746-89EC-DB64A2F729FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35AE934F-B63A-4746-89EC-DB64A2F729FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35AE934F-B63A-4746-89EC-DB64A2F729FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B87EFC6-6F8C-41B3-B43E-B08C52E423AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B87EFC6-6F8C-41B3-B43E-B08C52E423AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B87EFC6-6F8C-41B3-B43E-B08C52E423AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B87EFC6-6F8C-41B3-B43E-B08C52E423AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
