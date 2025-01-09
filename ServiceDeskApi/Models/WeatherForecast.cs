@@ -1,4 +1,4 @@
-namespace ServiceDeskApi;
+namespace ServiceDeskApi.Models;
 
 public class WeatherForecast
 {

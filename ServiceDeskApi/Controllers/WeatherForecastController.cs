@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ServiceDeskApi.Models;
 
 namespace ServiceDeskApi.Controllers;
 
