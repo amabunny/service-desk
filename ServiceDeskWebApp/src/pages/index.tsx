@@ -3,7 +3,7 @@ import { BaseTemplate } from '@/shared/landing-ui';
 
 const IndexPage = () => {
   return (
-    <BaseTemplate>
+    <BaseTemplate showFooter>
       <Landing />
     </BaseTemplate>
   );

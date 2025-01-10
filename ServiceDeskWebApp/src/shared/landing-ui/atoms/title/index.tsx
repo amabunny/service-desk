@@ -6,9 +6,10 @@ interface Props {
   children: ReactNode;
   level: 1 | 2 | 3 | 4 | 5 | 6;
   bold?: boolean;
+  center?: boolean;
 }
 
-export const Title = ({ children, level, bold, className }: Props) => {
+export const Title = ({ children, level, bold, className, center }: Props) => {
   const tags = useMemo(
     () =>
       ({
@@ -28,6 +29,7 @@ export const Title = ({ children, level, bold, className }: Props) => {
     <Tag
       className={clsx(
         bold && ['font-bold'],
+        center && ['text-center'],
 
         level === 1 && ['text-5xl'],
         level === 2 && ['text-4xl'],

@@ -8,6 +8,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 
+import { Card, Section } from '@/shared/landing-ui';
+
 interface Advantage {
   title: string;
   description: string;
@@ -43,24 +45,14 @@ const advantages: Advantage[] = [
 
 export const AdvantagesCards = () => {
   return (
-    <div className={clsx('py-10')}>
+    <Section>
       <div className={clsx('container', 'mx-auto')}>
         <div className={clsx('grid', 'grid-flow-col', 'gap-5')}>
           {advantages.map((advantage) => (
-            <div
+            <Card
+              indents
               key={advantage.title}
-              className={clsx(
-                'flex',
-                'flex-col',
-                'items-center',
-                'py-5',
-                'px-7',
-                'rounded-xl',
-                'bg-white',
-                'dark:bg-zinc-900/50',
-                'text-black',
-                'dark:text-white'
-              )}
+              className={clsx('flex', 'flex-col', 'items-center')}
             >
               <div className={clsx('h-28', 'mb-5')}>
                 <FontAwesomeIcon
@@ -75,7 +67,8 @@ export const AdvantagesCards = () => {
                   'flex-grow',
                   'flex',
                   'items-center',
-                  'mb-3'
+                  'mb-3',
+                  'font-bold'
                 )}
               >
                 {advantage.title}
@@ -92,10 +85,10 @@ export const AdvantagesCards = () => {
               >
                 {advantage.description}
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       </div>
-    </div>
+    </Section>
   );
 };

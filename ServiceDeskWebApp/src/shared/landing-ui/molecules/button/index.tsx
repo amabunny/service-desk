@@ -1,4 +1,4 @@
-import { Button as HeadlessUIButton } from '@headlessui/react';
+import { Button as HeadlessUIButton, ButtonProps } from '@headlessui/react';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
@@ -8,7 +8,12 @@ interface Props {
   size?: 'small' | 'medium' | 'large';
 }
 
-export const Button = ({ children, className, size = 'medium' }: Props) => {
+export const Button = ({
+  children,
+  className,
+  size = 'medium',
+  ...rest
+}: Props & ButtonProps) => {
   return (
     <HeadlessUIButton
       className={clsx(
@@ -16,7 +21,7 @@ export const Button = ({ children, className, size = 'medium' }: Props) => {
         'inline-flex',
         'gap-2',
         'items-center',
-        'rounded-full',
+        'rounded-xl',
         'text-white',
         'bg-zinc-700',
         'data-[hover]:bg-zinc-600',
@@ -30,8 +35,10 @@ export const Button = ({ children, className, size = 'medium' }: Props) => {
         'font-light',
 
         size === 'small' && ['py-1', 'px-4', 'text-sm'],
-        size === 'medium' && ['py-1.5', 'px-3', 'text-base']
+        size === 'medium' && ['py-1.5', 'px-6', 'text-base'],
+        size === 'large' && ['py-3', 'px-8', 'text-lg']
       )}
+      {...rest}
     >
       {children}
     </HeadlessUIButton>

@@ -21,6 +21,10 @@ const routes: RouteParams[] = [
     path: RoutesService.getBecomeMaster(),
     Component: lazy(() => import('@/pages/become-master')),
   },
+  {
+    path: RoutesService.getLoginPage(),
+    Component: lazy(() => import('@/pages/login')),
+  },
 ];
 
 export const Router = () => {

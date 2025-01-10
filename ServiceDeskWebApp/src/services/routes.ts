@@ -14,4 +14,8 @@ export class RoutesService {
   static getBecomeMaster() {
     return '/become-master';
   }
+
+  static getLoginPage() {
+    return '/login';
+  }
 }

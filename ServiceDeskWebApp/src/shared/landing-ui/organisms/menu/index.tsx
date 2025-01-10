@@ -33,7 +33,13 @@ export const Menu = () => {
     <div>
       <nav>
         <ul
-          className={clsx('grid', 'grid-flow-col', 'justify-start', 'text-sm')}
+          className={clsx(
+            'grid',
+            'grid-flow-col',
+            'justify-start',
+            'text-sm',
+            '-mx-5'
+          )}
         >
           {menuItems.map((menuItem) => (
             <li key={menuItem.title}>

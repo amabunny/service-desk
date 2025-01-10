@@ -7,7 +7,9 @@ import classes from './style.module.css';
 
 export const Banner = () => {
   return (
-    <div className={clsx(classes.banner, 'h-[430px]', 'rounded-b-xl')}>
+    <div
+      className={clsx(classes.banner, 'h-[430px]', 'rounded-b-xl', 'shadow-sm')}
+    >
       <div
         className={clsx(
           'container',

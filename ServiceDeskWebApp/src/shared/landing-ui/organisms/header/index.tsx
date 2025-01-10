@@ -1,10 +1,19 @@
 import clsx from 'clsx';
+import { useNavigate } from 'react-router';
+
+import { RoutesService } from '@/services/routes.ts';
 
 import { Button } from '../../molecules/button';
 import { DarkModeToggle } from '../dark-mode-toggle';
 import { Menu } from '../menu';
 
 export const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    void navigate(RoutesService.getLoginPage());
+  };
+
   return (
     <header
       className={clsx(
@@ -29,7 +38,9 @@ export const Header = () => {
             </div>
 
             <div>
-              <Button size={'small'}>Войти</Button>
+              <Button size={'small'} onClick={handleLoginClick}>
+                Войти
+              </Button>
             </div>
           </div>
         </div>

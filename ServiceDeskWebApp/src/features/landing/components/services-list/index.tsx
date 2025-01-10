@@ -5,6 +5,7 @@ const services: string[] = [
   'Массаж',
   'Услуги косметолога',
   'Репетитор',
+  'Сантехника',
 ];
 
 interface Props {
@@ -32,7 +33,9 @@ export const ServicesList = ({ className }: Props) => {
             'backdrop-blur',
             'text-white',
             'bg-zinc-900/50',
-            'hover:bg-zinc-700/10'
+            'hover:bg-zinc-700/80',
+            'dark:hover:bg-zinc-700/10',
+            'text-sm'
           )}
           key={service}
         >
