@@ -1,7 +1,7 @@
 import { ComponentType, LazyExoticComponent } from 'react';
 
 export interface RouteParams {
-  path?: '';
+  path?: string;
   Component: LazyExoticComponent<ComponentType> | ComponentType;
   index?: boolean;
 }

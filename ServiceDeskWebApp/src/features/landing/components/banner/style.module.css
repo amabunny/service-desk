@@ -1,0 +1,10 @@
+.banner {
+  background-image: url('/assets/landing/white-banner-bg.jpg');
+
+  @apply bg-contain;
+  @apply bg-repeat;
+}
+
+:global(.dark) .banner {
+  background-image: url('/assets/landing/dark-banner-bg.jpg');
+}

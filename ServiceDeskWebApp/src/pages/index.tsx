@@ -1,7 +1,12 @@
-import { LandingPageTemplate } from '@/ui';
+import { Landing } from '@/features/landing';
+import { BaseTemplate } from '@/shared/landing-ui';
 
 const IndexPage = () => {
-  return <LandingPageTemplate>Hello, world!</LandingPageTemplate>;
+  return (
+    <BaseTemplate>
+      <Landing />
+    </BaseTemplate>
+  );
 };
 
 export default IndexPage;
