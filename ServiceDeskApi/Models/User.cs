@@ -1,8 +1,13 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace ServiceDeskApi.Models;
 
-public class User
+public class User: IdentityUser<Guid>
 {
-    public int Id { get; set; }
-    public required string Name { get; set; }
-    public required string Password { get; set; }
+    
+}
+
+public class Role : IdentityRole<Guid>
+{
+    
 }
