@@ -1,1 +1,2 @@
-export type DefaultSizes = 'small' | 'medium' | 'large';
+export type ThemeSizes = 'small' | 'medium' | 'large';
+export type ThemeColors = 'default';

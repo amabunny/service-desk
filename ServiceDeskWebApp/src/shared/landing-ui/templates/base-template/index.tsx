@@ -1,16 +1,16 @@
 import clsx from 'clsx';
-import { PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 
-import { Card } from '@/shared/landing-ui';
-
+import { Footer } from '../../organisms/footer';
 import { Header } from '../../organisms/header';
 
-type Props = PropsWithChildren<{
+interface Props {
   headerGap?: boolean;
   container?: boolean;
   containerVerticalIndents?: boolean;
   showFooter?: boolean;
-}>;
+  children: ReactNode;
+}
 
 export const BaseTemplate = ({
   children,
@@ -38,15 +38,7 @@ export const BaseTemplate = ({
         </div>
       </main>
 
-      {showFooter && (
-        <Card rounded={false}>
-          <footer className={clsx('min-h-72')}>
-            <div className={clsx('container', 'mx-auto', 'py-5')}>
-              <p> 2025 - Landing Page </p>
-            </div>
-          </footer>
-        </Card>
-      )}
+      {showFooter && <Footer />}
     </div>
   );
 };

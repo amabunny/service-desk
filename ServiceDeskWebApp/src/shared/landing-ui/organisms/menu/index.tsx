@@ -1,32 +1,8 @@
 import clsx from 'clsx';
 
-import { RoutesService } from '@/services/routes.ts';
+import { mainLinks } from '@/services/routes';
 
 import { Link } from '../../molecules/link';
-
-interface MenuItem {
-  title: string;
-  path: string;
-}
-
-const menuItems: MenuItem[] = [
-  {
-    title: 'Главная',
-    path: RoutesService.getIndex(),
-  },
-  {
-    title: 'Найти специалиста',
-    path: RoutesService.getFindMaster(),
-  },
-  {
-    title: 'Мои заказы',
-    path: RoutesService.getMyOrders(),
-  },
-  {
-    title: 'Стать исполнителем',
-    path: RoutesService.getBecomeMaster(),
-  },
-];
 
 export const Menu = () => {
   return (
@@ -41,7 +17,7 @@ export const Menu = () => {
             '-mx-5'
           )}
         >
-          {menuItems.map((menuItem) => (
+          {mainLinks.map((menuItem) => (
             <li key={menuItem.title}>
               <Link
                 className={clsx('py-4', 'px-5', 'inline-block')}

@@ -7,13 +7,13 @@ import {
 } from '@headlessui/react';
 import clsx from 'clsx';
 
-import { DefaultSizes } from '@/types/ui';
+import { ThemeSizes } from '@/types/ui';
 
 type Props = Omit<InputProps, 'size'> & {
   label?: string;
   description?: string;
   className?: string;
-  size?: DefaultSizes;
+  size?: ThemeSizes;
 };
 
 export const Input = ({
@@ -30,6 +30,8 @@ export const Input = ({
           className={clsx(
             'font-medium',
             'dark:text-white',
+            'mb-3',
+            'inline-block',
 
             size === 'small' && ['text-sm'],
             size === 'medium' && ['text-base'],

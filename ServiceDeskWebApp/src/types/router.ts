@@ -5,3 +5,8 @@ export interface RouteParams {
   Component: LazyExoticComponent<ComponentType> | ComponentType;
   index?: boolean;
 }
+
+export interface MenuItem {
+  title: string;
+  path: string;
+}

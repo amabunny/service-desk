@@ -3,17 +3,17 @@ import {
   faMedal,
   faMoneyBill,
   faStar,
-  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
 import { Card, Section } from '@/shared/landing-ui';
 
 interface Advantage {
   title: string;
   description: string;
-  icon: IconDefinition;
+  icon: ReactNode;
 }
 
 const advantages: Advantage[] = [
@@ -21,25 +21,40 @@ const advantages: Advantage[] = [
     title: 'Лучшие специалисты города',
     description: `Мы собрали для Вас услуги лучших специалистов, готовых взять
      ваш заказ в удобное для вас время`,
-    icon: faMedal,
+    icon: (
+      <FontAwesomeIcon
+        className={clsx('drop-shadow', 'text-yellow-400')}
+        icon={faMedal}
+      />
+    ),
   },
   {
     title: 'Высокое качество обслуживания',
     description: `Все специалисты проходят строгий отбор, чтобы 
     гарантировать высокий уровень услуг.`,
-    icon: faStar,
+    icon: (
+      <FontAwesomeIcon
+        className={clsx('drop-shadow', 'text-orange-400')}
+        icon={faStar}
+      />
+    ),
   },
   {
     title: 'Гибкое расписание',
     description: `Вы сами выбираете удобное время и место для оказания услуги, 
     мы подстроимся под ваш график.`,
-    icon: faClock,
+    icon: <FontAwesomeIcon className={clsx('drop-shadow')} icon={faClock} />,
   },
   {
     title: 'Прозрачная система цен',
     description: `Вы видите полную стоимость услуги перед подтверждением заказа,
      никаких скрытых платежей.`,
-    icon: faMoneyBill,
+    icon: (
+      <FontAwesomeIcon
+        className={clsx('drop-shadow', 'text-green-800')}
+        icon={faMoneyBill}
+      />
+    ),
   },
 ];
 
@@ -54,11 +69,10 @@ export const AdvantagesCards = () => {
               key={advantage.title}
               className={clsx('flex', 'flex-col', 'items-center')}
             >
-              <div className={clsx('h-28', 'mb-5')}>
-                <FontAwesomeIcon
-                  icon={advantage.icon}
-                  className={clsx('h-full', 'text-zinc-500')}
-                />
+              <div className={clsx('mb-5')}>
+                <div className={clsx('h-28', '[&>*]:h-full')}>
+                  {advantage.icon}
+                </div>
               </div>
 
               <div

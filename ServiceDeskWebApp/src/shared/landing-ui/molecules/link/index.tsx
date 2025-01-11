@@ -1,13 +1,12 @@
 import clsx from 'clsx';
-import { PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 import { Link as RouterLink, LinkProps } from 'react-router';
 import { useLocation } from 'react-router';
 
-type Props = PropsWithChildren<
-  LinkProps & {
-    activeClassName?: string;
-  }
->;
+type Props = LinkProps & {
+  activeClassName?: string;
+  children: ReactNode;
+};
 
 export const Link = ({ className, activeClassName, to, ...rest }: Props) => {
   const location = useLocation();

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { Section, Title } from '@/shared/landing-ui';
+import { Section, Tag, Title } from '@/shared/landing-ui';
 
 interface Master {
   name: string;
@@ -98,14 +98,14 @@ export const PopularMasters = () => {
               <div className={clsx('mb-1', 'text-sm')}>
                 {master.specialization}
               </div>
-              <div className={clsx('mb-1', 'text-xs')}>
+              <div className={clsx('mb-1', 'text-xs', 'mb-3')}>
                 {master.description}
               </div>
 
               <div className={clsx('flex-grow', 'flex', 'items-end')}>
                 <div className={clsx('flex', 'gap-2')}>
                   {master.services.map((service) => (
-                    <span key={service}>{service}</span>
+                    <Tag key={service}>{service}</Tag>
                   ))}
                 </div>
               </div>
