@@ -7,12 +7,15 @@ using ServiceDeskApi.Services;
 namespace ServiceDeskApi.Controllers;
 
 [Route("api/[controller]")]
-public class AuthController(IUsersService usersService) : ControllerBase
+public class AuthController(IUsersService usersService)
+    : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<Results<Ok<IdentityResult>, BadRequest<string>>> Register([FromBody] RegisterUserDto registerUserDto)
+    public async Task<Results<Ok<IdentityResult>, BadRequest<string>>> Register(
+        [FromBody] RegisterUserDto registerUserDto)
     {
         try
+
         {
             var result = await usersService.CreateAsync(registerUserDto);
             return TypedResults.Ok(result);
@@ -21,12 +24,18 @@ public class AuthController(IUsersService usersService) : ControllerBase
         {
             return TypedResults.BadRequest("Incorrect data passed.");
         }
-        
     }
 
     [HttpPost("login")]
-    public ActionResult Login([FromBody] LoginUserDto loginUserDto)
+    public async Task<ActionResult> Login([FromBody] LoginUserDto loginUserDto)
     {
-        return Ok();
+        var user = await usersService.AuthorizeAsync(loginUserDto);
+
+        if (user == null)
+            return Unauthorized();
+
+        var token = await usersService.GenerateJwtWebTokenAsync(user);
+
+        return Ok(new { token });
     }
 }

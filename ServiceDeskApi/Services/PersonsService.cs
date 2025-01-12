@@ -9,7 +9,7 @@ public interface IPersonsService
     public Task<Person> Create(PersonDto personDto);
 }
 
-public class PersonsService(IPersonRepository personRepository): IPersonsService
+public class PersonsService(IPersonRepository personRepository) : IPersonsService
 {
     public async Task<Person> Create(PersonDto personDto)
     {
@@ -17,9 +17,9 @@ public class PersonsService(IPersonRepository personRepository): IPersonsService
         {
             FirstName = personDto.FirstName,
             LastName = personDto.LastName,
-            MiddleName = personDto.MiddleName,
+            MiddleName = personDto.MiddleName
         });
-        
+
         return result;
     }
 }

@@ -11,7 +11,8 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         builder
             .HasOne(person => person.User)
             .WithOne(user => user.Person)
-            .OnDelete(DeleteBehavior.Cascade);;
+            .OnDelete(DeleteBehavior.Cascade);
+        ;
 
         builder.HasData(
             new Person
@@ -19,7 +20,7 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
                 Id = Guid.Parse("123e4567-e89b-12d3-a456-426655440000"),
                 FirstName = "Сергей",
                 LastName = "Антипин",
-                MiddleName = "Дмитриевич",
+                MiddleName = "Дмитриевич"
             }
         );
     }

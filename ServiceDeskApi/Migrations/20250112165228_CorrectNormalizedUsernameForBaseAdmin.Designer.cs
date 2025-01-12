@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ServiceDeskApi.Data;
@@ -11,9 +12,11 @@ using ServiceDeskApi.Data;
 namespace ServiceDeskApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250112165228_CorrectNormalizedUsernameForBaseAdmin")]
+    partial class CorrectNormalizedUsernameForBaseAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -295,7 +298,6 @@ namespace ServiceDeskApi.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "arche1996@yandex.com",
                             NormalizedUserName = "ARCHE1996",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDWEJpj0w89pFxvbHppMIwy1rOYvhU3yIfNBUQqjvAcuZusoLvnyUsCyeq0muOwx0g==",
                             PersonId = new Guid("123e4567-e89b-12d3-a456-426655440000"),
                             PhoneNumber = "79638956103",
                             PhoneNumberConfirmed = true,

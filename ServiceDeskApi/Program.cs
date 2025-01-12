@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using System.Reflection;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ServiceDeskApi.Data;
-using ServiceDeskApi.Models;
 using ServiceDeskApi.Extensions;
+using ServiceDeskApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +19,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 {
     var jwtKey = builder.Configuration["Jwt:Key"];
 
-    if (jwtKey == null) throw new ArgumentNullException("Jwt:Key", "JWT Secret Key is not provided in the configuration.");
+    if (jwtKey == null)
+        throw new ArgumentNullException("Jwt:Key",
+            "JWT Secret Key is not provided in the configuration.");
 
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -29,7 +31,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
     };
 });
 
