@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ServiceDeskApi.DTOs;
+using ServiceDeskApi.Responses;
 using ServiceDeskApi.Services;
 
 namespace ServiceDeskApi.Controllers;
@@ -11,31 +12,35 @@ public class AuthController(IUsersService usersService)
     : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<Results<Ok<IdentityResult>, BadRequest<string>>> Register(
+    public async Task<Results<Ok<IdentityResult>, BadRequest<BaseResponse>>> Register(
         [FromBody] RegisterUserDto registerUserDto)
     {
         try
-
         {
-            var result = await usersService.CreateAsync(registerUserDto);
-            return TypedResults.Ok(result);
+            return TypedResults.Ok(await usersService.CreateAsync(registerUserDto));
         }
-        catch
+        catch (Exception e)
         {
-            return TypedResults.BadRequest("Incorrect data passed.");
+            return TypedResults.BadRequest(new BaseResponse
+            {
+                Succeeded = false,
+                Message = e.Message
+            });
         }
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult> Login([FromBody] LoginUserDto loginUserDto)
+    public async Task<Results<Ok<TokenResponse>, UnauthorizedHttpResult>> Login(
+        [FromBody] LoginUserDto loginUserDto)
     {
         var user = await usersService.AuthorizeAsync(loginUserDto);
+        if (user == null) return TypedResults.Unauthorized();
 
-        if (user == null)
-            return Unauthorized();
-
-        var token = await usersService.GenerateJwtWebTokenAsync(user);
-
-        return Ok(new { token });
+        return TypedResults.Ok(new TokenResponse
+        {
+            Succeeded = true,
+            AccessToken = await usersService.GenerateAccessTokenAsync(user),
+            RefreshToken = await usersService.GenerateRefreshTokenAsync()
+        });
     }
 }

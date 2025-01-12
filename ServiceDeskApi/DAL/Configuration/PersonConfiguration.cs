@@ -12,7 +12,6 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
             .HasOne(person => person.User)
             .WithOne(user => user.Person)
             .OnDelete(DeleteBehavior.Cascade);
-        ;
 
         builder.HasData(
             new Person

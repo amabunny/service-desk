@@ -16,6 +16,11 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .WithOne(person => person.User)
             .HasForeignKey<User>(user => user.PersonId);
 
+        builder.HasMany<RefreshToken>(user => user.RefreshTokens)
+            .WithOne(refreshToken => refreshToken.User)
+            .HasForeignKey(refreshToken => refreshToken.Id)
+            .IsRequired();
+
         var adminUser = new User
         {
             Id = Guid.Parse("fd7185f9-b407-46d1-98e0-7d57cc292c95"),
