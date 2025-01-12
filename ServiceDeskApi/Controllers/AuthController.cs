@@ -7,14 +7,14 @@ using ServiceDeskApi.Services;
 namespace ServiceDeskApi.Controllers;
 
 [Route("api/[controller]")]
-public class AuthController(UsersService usersService) : ControllerBase
+public class AuthController(IUsersService usersService) : ControllerBase
 {
     [HttpPost("register")]
     public async Task<Results<Ok<IdentityResult>, BadRequest<string>>> Register([FromBody] RegisterUserDto registerUserDto)
     {
         try
         {
-            var result = await usersService.Create(registerUserDto);
+            var result = await usersService.CreateAsync(registerUserDto);
             return TypedResults.Ok(result);
         }
         catch

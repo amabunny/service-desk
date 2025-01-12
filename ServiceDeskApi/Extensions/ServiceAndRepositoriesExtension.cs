@@ -15,7 +15,7 @@ public static class ServiceAndRepositoriesExtension
         {
             var repositoryInterfaceType = repositoryType
                 .GetInterfaces()
-                .FirstOrDefault(i => i.Name == 'I' + repositoryType.Name);
+                .FirstOrDefault(i => i.Name == "I" + repositoryType.Name);
 
             if (repositoryInterfaceType != null)
             {
@@ -31,7 +31,7 @@ public static class ServiceAndRepositoriesExtension
         {
             var serviceInterfaceType = serviceType
                 .GetInterfaces()
-                .FirstOrDefault(i => i.Name == 'I' + serviceType.Name);
+                .FirstOrDefault(i => i.Name == "I" + serviceType.Name);
 
             if (serviceInterfaceType != null)
             {

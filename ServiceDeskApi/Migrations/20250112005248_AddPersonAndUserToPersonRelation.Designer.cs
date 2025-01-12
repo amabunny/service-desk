@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ServiceDeskApi.Data;
@@ -11,9 +12,11 @@ using ServiceDeskApi.Data;
 namespace ServiceDeskApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250112005248_AddPersonAndUserToPersonRelation")]
+    partial class AddPersonAndUserToPersonRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,18 +149,12 @@ namespace ServiceDeskApi.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
                     b.ToTable("Persons");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("123e4567-e89b-12d3-a456-426655440000"),
-                            FirstName = "Сергей",
-                            LastName = "Антипин",
-                            MiddleName = "Дмитриевич"
-                        });
                 });
 
             modelBuilder.Entity("ServiceDeskApi.Models.Role", b =>
@@ -276,22 +273,6 @@ namespace ServiceDeskApi.Migrations
                         .IsUnique();
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("fd7185f9-b407-46d1-98e0-7d57cc292c95"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "",
-                            Email = "arche1996@yandex.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PersonId = new Guid("123e4567-e89b-12d3-a456-426655440000"),
-                            PhoneNumber = "79638956103",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "arche1996"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -349,8 +330,7 @@ namespace ServiceDeskApi.Migrations
                 {
                     b.HasOne("ServiceDeskApi.Models.Person", "Person")
                         .WithOne("User")
-                        .HasForeignKey("ServiceDeskApi.Models.User", "PersonId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ServiceDeskApi.Models.User", "PersonId");
 
                     b.Navigation("Person");
                 });

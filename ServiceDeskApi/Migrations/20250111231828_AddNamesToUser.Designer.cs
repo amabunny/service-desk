@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ServiceDeskApi.Data;
@@ -11,9 +12,11 @@ using ServiceDeskApi.Data;
 namespace ServiceDeskApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250111231828_AddNamesToUser")]
+    partial class AddNamesToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,41 +128,6 @@ namespace ServiceDeskApi.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ServiceDeskApi.Models.Person", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("MiddleName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Persons");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("123e4567-e89b-12d3-a456-426655440000"),
-                            FirstName = "Сергей",
-                            LastName = "Антипин",
-                            MiddleName = "Дмитриевич"
-                        });
-                });
-
             modelBuilder.Entity("ServiceDeskApi.Models.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -227,11 +195,26 @@ namespace ServiceDeskApi.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("MiddleName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -243,9 +226,6 @@ namespace ServiceDeskApi.Migrations
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
-
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
@@ -272,26 +252,7 @@ namespace ServiceDeskApi.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.HasIndex("PersonId")
-                        .IsUnique();
-
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("fd7185f9-b407-46d1-98e0-7d57cc292c95"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "",
-                            Email = "arche1996@yandex.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PersonId = new Guid("123e4567-e89b-12d3-a456-426655440000"),
-                            PhoneNumber = "79638956103",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "arche1996"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -343,21 +304,6 @@ namespace ServiceDeskApi.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ServiceDeskApi.Models.User", b =>
-                {
-                    b.HasOne("ServiceDeskApi.Models.Person", "Person")
-                        .WithOne("User")
-                        .HasForeignKey("ServiceDeskApi.Models.User", "PersonId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Person");
-                });
-
-            modelBuilder.Entity("ServiceDeskApi.Models.Person", b =>
-                {
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
