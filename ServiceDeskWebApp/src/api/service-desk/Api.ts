@@ -10,11 +10,11 @@
  */
 
 import {
-  BaseResponseBadRequest,
-  IdentityResultOk,
+  BaseResponse,
+  IdentityResult,
   LoginUserDto,
   RegisterUserDto,
-  TokenResponseOk,
+  TokenResponse,
 } from './data-contracts';
 import { ContentType, HttpClient, RequestParams } from './http-client';
 
@@ -29,7 +29,7 @@ export class Api<
    * @request POST:/api/Auth/register
    */
   authRegisterPost = (data: RegisterUserDto, params: RequestParams = {}) =>
-    this.request<IdentityResultOk, BaseResponseBadRequest>({
+    this.request<IdentityResult, BaseResponse>({
       path: `/api/Auth/register`,
       method: 'POST',
       body: data,
@@ -45,7 +45,7 @@ export class Api<
    * @request POST:/api/Auth/login
    */
   authLoginPost = (data: LoginUserDto, params: RequestParams = {}) =>
-    this.request<TokenResponseOk, void>({
+    this.request<TokenResponse, void>({
       path: `/api/Auth/login`,
       method: 'POST',
       body: data,

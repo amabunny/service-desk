@@ -1,9 +1,8 @@
-import { createEffect } from 'effector';
+import { appDomain } from '../@init';
+import { localStorageThemeSchema } from './schema';
+import { AppTheme } from './types';
 
-import { localStorageThemeSchema } from '@/shared/@app/model/theme/schema.ts';
-import { AppTheme } from '@/shared/@app/model/theme/types.ts';
-
-export const getThemeFromLs = createEffect((): Promise<AppTheme> => {
+export const getThemeFromLs = appDomain.createEffect((): Promise<AppTheme> => {
   const theme = localStorage.getItem('theme');
 
   if (theme === null) {
@@ -17,7 +16,7 @@ export const getThemeFromLs = createEffect((): Promise<AppTheme> => {
   return localStorageThemeSchema.parseAsync(theme);
 });
 
-export const writeThemeToLs = createEffect(
+export const writeThemeToLs = appDomain.createEffect(
   async (currentTheme: AppTheme): Promise<void> => {
     try {
       const theme = await localStorageThemeSchema.parseAsync(
@@ -33,7 +32,7 @@ export const writeThemeToLs = createEffect(
   }
 );
 
-export const toggleBodyClass = createEffect((theme: AppTheme) => {
+export const toggleBodyClass = appDomain.createEffect((theme: AppTheme) => {
   const bodyHasDarkClass = document.body.classList.contains('dark');
 
   if (bodyHasDarkClass && theme !== 'dark') {

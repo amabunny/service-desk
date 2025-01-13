@@ -1,12 +1,12 @@
-import { createEvent, createStore, sample } from 'effector';
+import { sample } from 'effector';
 
-import { initializeApp } from '../@init';
+import { appDomain, initializeApp } from '../@init';
 import { getThemeFromLs, toggleBodyClass, writeThemeToLs } from './effects';
 import { AppTheme } from './types.ts';
 
-const toggle = createEvent();
+const toggle = appDomain.createEvent();
 
-const $value = createStore<AppTheme>('light');
+const $value = appDomain.createStore<AppTheme>('light');
 
 $value
   .on(getThemeFromLs.doneData, (_, theme) => theme)

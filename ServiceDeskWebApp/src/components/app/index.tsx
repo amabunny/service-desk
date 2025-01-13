@@ -8,7 +8,7 @@ import { Router } from '../router';
 
 export const App = () => {
   const navigate = useNavigate();
-  const initApp = useUnit(appModels.init.initializeApp);
+  const initApp = useUnit(appModels.initializeApp);
 
   useEffect(() => {
     initApp({ navigate });

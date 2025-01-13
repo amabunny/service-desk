@@ -50,5 +50,6 @@ export default tsEslint.config(
       "simple-import-sort/exports": "error",
       "@typescript-eslint/consistent-type-definitions":  "off"
     },
+    ignores: ['./api/service-desk']
   },
 );

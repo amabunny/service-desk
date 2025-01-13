@@ -14,12 +14,6 @@ export type BaseResponse = {
   succeeded: boolean;
 };
 
-export type BaseResponseBadRequest = {
-  /** @format int32 */
-  statusCode?: number;
-  value?: BaseResponse;
-};
-
 export type IdentityError = {
   code?: string | null;
   description?: string | null;
@@ -28,12 +22,6 @@ export type IdentityError = {
 export type IdentityResult = {
   errors?: IdentityError[] | null;
   succeeded?: boolean;
-};
-
-export type IdentityResultOk = {
-  /** @format int32 */
-  statusCode?: number;
-  value?: IdentityResult;
 };
 
 export type LoginUserDto = {
@@ -56,10 +44,4 @@ export type TokenResponse = {
   message?: string | null;
   refreshToken: string | null;
   succeeded: boolean;
-};
-
-export type TokenResponseOk = {
-  /** @format int32 */
-  statusCode?: number;
-  value?: TokenResponse;
 };

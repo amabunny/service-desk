@@ -1,1 +1,1 @@
-export { appModels } from './model';
+export * from './model';
