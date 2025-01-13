@@ -3,10 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { useUnit } from 'effector-react';
 
-import { appModel } from '@/shared/@app';
+import { appModels } from '@/shared/@app';
 
 export const DarkModeToggle = () => {
-  const [theme, changeTheme] = useUnit([appModel.$theme, appModel.toggleTheme]);
+  const [theme, changeTheme] = useUnit([
+    appModels.theme.$value,
+    appModels.theme.toggle,
+  ]);
 
   const icon = theme === 'dark' ? faSun : faMoon;
 

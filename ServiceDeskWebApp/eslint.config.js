@@ -48,6 +48,7 @@ export default tsEslint.config(
       ...react.configs["jsx-runtime"].rules,
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
+      "@typescript-eslint/consistent-type-definitions":  "off"
     },
   },
 );

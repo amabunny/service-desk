@@ -1,16 +1,18 @@
 import { useUnit } from 'effector-react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
-import { appModel } from '@/shared/@app';
+import { appModels } from '@/shared/@app';
 
 import { Router } from '../router';
 
 export const App = () => {
-  const initAppEvent = useUnit(appModel.init);
+  const navigate = useNavigate();
+  const initApp = useUnit(appModels.init.initializeApp);
 
   useEffect(() => {
-    initAppEvent();
-  }, [initAppEvent]);
+    initApp({ navigate });
+  }, [initApp, navigate]);
 
   return <Router />;
 };

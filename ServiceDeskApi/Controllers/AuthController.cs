@@ -11,6 +11,8 @@ namespace ServiceDeskApi.Controllers;
 public class AuthController(IUsersService usersService)
     : ControllerBase
 {
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Ok<IdentityResult>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequest<BaseResponse>))]
     [HttpPost("register")]
     public async Task<Results<Ok<IdentityResult>, BadRequest<BaseResponse>>> Register(
         [FromBody] RegisterUserDto registerUserDto)
@@ -29,6 +31,8 @@ public class AuthController(IUsersService usersService)
         }
     }
 
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Ok<TokenResponse>))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [HttpPost("login")]
     public async Task<Results<Ok<TokenResponse>, UnauthorizedHttpResult>> Login(
         [FromBody] LoginUserDto loginUserDto)

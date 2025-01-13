@@ -10,6 +10,17 @@ using ServiceDeskApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+    options.AddPolicy("AllowConfigOrigins",
+        policy =>
+        {
+            var origin = builder.Configuration["AllowedHosts"];
+            if (origin == null)
+                throw new ArgumentNullException("AllowedHosts",
+                    "AllowedHosts configuration is not provided in the configuration.");
+            policy.WithOrigins(origin).AllowAnyHeader().AllowAnyMethod();
+        }));
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -63,6 +74,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowConfigOrigins");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

@@ -1,7 +1,7 @@
 import { lazy } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router';
 
-import { RoutesService } from '@/services/routes.ts';
+import { RoutesService } from '@/services/routes';
 import { RouteParams } from '@/types/router';
 
 const routes: RouteParams[] = [
@@ -29,17 +29,15 @@ const routes: RouteParams[] = [
 
 export const Router = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        {routes.map(({ index, Component, path }) => (
-          <Route
-            index={index}
-            key={path ?? ''}
-            path={path}
-            element={<Component />}
-          />
-        ))}
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      {routes.map(({ index, Component, path }) => (
+        <Route
+          index={index}
+          key={path ?? ''}
+          path={path}
+          element={<Component />}
+        />
+      ))}
+    </Routes>
   );
 };

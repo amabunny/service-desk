@@ -6,7 +6,7 @@ import {
   Label,
 } from '@headlessui/react';
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 
 import { ThemeSizes } from '@/types/ui';
 
@@ -15,15 +15,28 @@ type Props = Omit<InputProps, 'size'> & {
   description?: ReactNode;
   className?: string;
   size?: ThemeSizes;
+  errorsCount?: boolean | number;
 };
 
 export const Input = ({
   label,
   description,
   className,
+  errorsCount,
   size = 'medium',
   ...inputProps
 }: Props) => {
+  const inputHasErrors = useMemo(() => {
+    switch (typeof errorsCount) {
+      case 'number':
+        return errorsCount > 0;
+
+      case 'undefined':
+      default:
+        return false;
+    }
+  }, [errorsCount]);
+
   return (
     <Field className={clsx(className)}>
       {label && (
@@ -72,12 +85,13 @@ export const Input = ({
           'dark:bg-white/5',
           'dark:text-white',
 
-          'focus:outline-none',
-          'data-[focus]:outline-2',
-          'data-[focus]:-outline-offset-2',
+          'outline-none',
+          'outline-2',
+          '-outline-offset-2',
 
-          'data-[focus]:outline-black/10',
-          'dark:data-[focus]:outline-white/25',
+          inputHasErrors
+            ? clsx('outline-red-500', 'dark:outline-red-700')
+            : clsx('focus:outline-black/10', 'dark:focus:outline-white/25'),
 
           size === 'small' && ['text-sm', 'py-1.5', 'px-3'],
           size === 'medium' && ['text-base', 'py-2', 'px-4'],

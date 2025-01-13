@@ -155,7 +155,7 @@ namespace ServiceDeskApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons", (string)null);
+                    b.ToTable("Persons");
 
                     b.HasData(
                         new
@@ -191,7 +191,7 @@ namespace ServiceDeskApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RefreshTokens", (string)null);
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("ServiceDeskApi.Models.Role", b =>
@@ -322,7 +322,7 @@ namespace ServiceDeskApi.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "arche1996@yandex.com",
                             NormalizedUserName = "ARCHE1996",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDWEJpj0w89pFxvbHppMIwy1rOYvhU3yIfNBUQqjvAcuZusoLvnyUsCyeq0muOwx0g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED1j9SQXzIWUGUYc5FBKkmsHcrigYNicFJTWJ+qqyG7pbIlTbTiTyj3+NClK60Y15A==",
                             PersonId = new Guid("123e4567-e89b-12d3-a456-426655440000"),
                             PhoneNumber = "79638956103",
                             PhoneNumberConfirmed = true,

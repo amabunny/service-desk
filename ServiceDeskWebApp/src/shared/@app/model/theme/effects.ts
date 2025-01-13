@@ -1,7 +1,7 @@
 import { createEffect } from 'effector';
 
-import { localStorageThemeSchema } from './schema';
-import { AppTheme } from './types.ts';
+import { localStorageThemeSchema } from '@/shared/@app/model/theme/schema.ts';
+import { AppTheme } from '@/shared/@app/model/theme/types.ts';
 
 export const getThemeFromLs = createEffect((): Promise<AppTheme> => {
   const theme = localStorage.getItem('theme');

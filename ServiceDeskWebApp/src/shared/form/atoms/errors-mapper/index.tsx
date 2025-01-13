@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
-import { FormErrors } from '@/lib/factories/create-form';
+import { FormErrorsList } from '@/lib/factories/create-form';
 
 interface Props<T extends Record<string, unknown>> {
-  errors: FormErrors<T>;
+  errors: FormErrorsList<T>;
   field: keyof T;
 }
 

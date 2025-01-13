@@ -1,11 +1,11 @@
 import { ZodError } from 'zod';
 
-import { FormErrors } from './types';
+import { FormErrorsList } from './types';
 
 export const mapZodErrorToUnifiedArray = <T extends Record<string, unknown>>(
   error: ZodError<T>
 ) =>
-  error.errors.reduce((acc, curr): FormErrors<T> => {
+  error.errors.reduce((acc, curr): FormErrorsList<T> => {
     const key = curr.path as unknown as keyof T;
 
     if (acc[key]) {
@@ -21,4 +21,4 @@ export const mapZodErrorToUnifiedArray = <T extends Record<string, unknown>>(
     }
 
     return acc;
-  }, {} as FormErrors<T>);
+  }, {} as FormErrorsList<T>);

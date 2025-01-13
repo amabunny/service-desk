@@ -17,6 +17,7 @@ export const LandingPageLoginForm = () => {
     loginFormModel.$errors,
     loginFormModel.changeValues,
     loginFormModel.submitForm,
+    loginFormModel.submitFormFx,
   ]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -37,6 +38,7 @@ export const LandingPageLoginForm = () => {
           <div className={clsx('grid', 'gap-5')}>
             <Input
               value={username}
+              errorsCount={errors.username?.length}
               autoComplete={'username'}
               description={<ErrorsMapper errors={errors} field={'username'} />}
               onChange={(e) => changeValues({ username: e.target.value })}
@@ -46,6 +48,7 @@ export const LandingPageLoginForm = () => {
             />
             <Input
               value={password}
+              errorsCount={errors.password?.length}
               autoComplete={'current-password'}
               description={<ErrorsMapper errors={errors} field={'password'} />}
               onChange={(e) => changeValues({ password: e.target.value })}

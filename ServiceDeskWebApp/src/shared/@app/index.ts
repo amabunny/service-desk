@@ -1,3 +1,1 @@
-import * as appModel from './model';
-
-export { appModel };
+export { appModels } from './model';

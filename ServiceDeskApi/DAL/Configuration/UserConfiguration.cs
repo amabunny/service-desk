@@ -34,7 +34,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             PersonId = Guid.Parse("123e4567-e89b-12d3-a456-426655440000"),
             ConcurrencyStamp = "",
             PasswordHash =
-                "AQAAAAIAAYagAAAAEDWEJpj0w89pFxvbHppMIwy1rOYvhU3yIfNBUQqjvAcuZusoLvnyUsCyeq0muOwx0g=="
+                "AQAAAAIAAYagAAAAED1j9SQXzIWUGUYc5FBKkmsHcrigYNicFJTWJ+qqyG7pbIlTbTiTyj3+NClK60Y15A=="
         };
 
         builder.HasData(adminUser);
