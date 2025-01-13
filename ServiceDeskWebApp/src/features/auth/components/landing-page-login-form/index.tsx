@@ -1,12 +1,33 @@
 import clsx from 'clsx';
+import { useUnit } from 'effector-react';
+import { FormEvent } from 'react';
 
+import { ErrorsMapper } from '@/shared/form';
 import { Button, Card, Input, Title } from '@/shared/landing-ui';
 
+import { loginFormModel } from '../../model/login-form';
+
+const $username = loginFormModel.$values.map(({ username }) => username);
+const $password = loginFormModel.$values.map(({ password }) => password);
+
 export const LandingPageLoginForm = () => {
+  const [username, password, errors, changeValues, submitForm] = useUnit([
+    $username,
+    $password,
+    loginFormModel.$errors,
+    loginFormModel.changeValues,
+    loginFormModel.submitForm,
+  ]);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    submitForm();
+  };
+
   return (
     <div className={clsx('flex', 'justify-center')}>
       <Card className={clsx('py-7', 'px-10', 'w-2/6')}>
-        <form className={clsx('grid', 'gap-8')}>
+        <form onSubmit={handleSubmit} className={clsx('grid', 'gap-8')}>
           <div>
             <Title level={3} bold className={clsx('text-center', 'mb-4')}>
               Вход
@@ -15,11 +36,23 @@ export const LandingPageLoginForm = () => {
 
           <div className={clsx('grid', 'gap-5')}>
             <Input
-              name={'mail'}
-              label={'Электронная почта:'}
+              value={username}
+              autoComplete={'username'}
+              description={<ErrorsMapper errors={errors} field={'username'} />}
+              onChange={(e) => changeValues({ username: e.target.value })}
+              name={'username'}
+              label={'Имя пользователя:'}
               className={clsx('w-full')}
             />
-            <Input name={'password'} label={'Пароль:'} type={'password'} />
+            <Input
+              value={password}
+              autoComplete={'current-password'}
+              description={<ErrorsMapper errors={errors} field={'password'} />}
+              onChange={(e) => changeValues({ password: e.target.value })}
+              name={'password'}
+              label={'Пароль:'}
+              type={'password'}
+            />
           </div>
 
           <div

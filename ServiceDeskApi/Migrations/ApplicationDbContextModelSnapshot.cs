@@ -155,7 +155,7 @@ namespace ServiceDeskApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Persons", (string)null);
 
                     b.HasData(
                         new
@@ -191,7 +191,7 @@ namespace ServiceDeskApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RefreshTokens");
+                    b.ToTable("RefreshTokens", (string)null);
                 });
 
             modelBuilder.Entity("ServiceDeskApi.Models.Role", b =>

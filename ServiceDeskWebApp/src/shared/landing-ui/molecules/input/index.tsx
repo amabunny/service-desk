@@ -6,12 +6,13 @@ import {
   Label,
 } from '@headlessui/react';
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
 import { ThemeSizes } from '@/types/ui';
 
 type Props = Omit<InputProps, 'size'> & {
   label?: string;
-  description?: string;
+  description?: ReactNode;
   className?: string;
   size?: ThemeSizes;
 };
@@ -30,7 +31,7 @@ export const Input = ({
           className={clsx(
             'font-medium',
             'dark:text-white',
-            'mb-3',
+            'mb-1',
             'inline-block',
 
             size === 'small' && ['text-sm'],
@@ -44,7 +45,9 @@ export const Input = ({
 
       {description && (
         <Description
+          as={'div'}
           className={clsx(
+            'text-xs',
             'text-zinc-500',
             'dark:text-white/50',
             'mb-3',
