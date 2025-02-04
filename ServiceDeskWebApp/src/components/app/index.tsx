@@ -6,8 +6,6 @@ import { appModels } from '@/shared/@app';
 
 import { Router } from '../router';
 
-console.log(1);
-
 export const App = () => {
   const navigate = useNavigate();
   const initApp = useUnit(appModels.initializeApp);
